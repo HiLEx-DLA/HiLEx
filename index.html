@@ -1,6 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <title>2x2 Image Grid - Full Width</title>
+  <style>
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 columns */
+      gap: 20px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .grid-container img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+    }
+  </style>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="HiLEx is a large-scale dataset for Hierarchical Layout Extraction from exam question papers, with 1,965 annotated pages from 8 major exams. Includes hierarchical layout annotations (questions, answers, instructions, etc.), benchmarks with YOLO, Detectron2, DETR, and more." />
@@ -470,32 +497,54 @@
     <h3>Ground Truth Layout Annotations</h3>
     <p>Each question paper image is annotated with color-coded boxes for the six structural classes, providing a hierarchical segmentation of the page content.</p>
     <figure>
-      <img src="img/annotations_sample.jpg" alt="Sample HiLEx page with ground truth layout annotations" />
+      <img src="images/groundtruth.jpg" alt="Sample HiLEx page with ground truth layout annotations" />
       <figcaption><em>Fig:</em> Example annotations on a question paper page, highlighting Question, Answer, Instruction, Description, etc.</figcaption>
     </figure>
     <p><em>Single-Column vs Multi-Column:</em> HiLEx includes both single-column papers and multi-column layouts. The annotations adapt to each style, capturing blocks appropriately in each format.</p>
     <h3>Model Predictions</h3>
     <p>Below are sample outputs from fine-tuned detection models on HiLEx pages. Detected layout components are drawn with class-specific colors.</p>
-    <figure>
-      <img src="img/yolo_predictions.jpg" alt="YOLOv8 model prediction on HiLEx page" />
-      <figcaption><em>Fig:</em> YOLOv8 correctly identifies the Question region, Answer options, and overall Paper area on a sample page.</figcaption>
-    </figure>
-    <figure>
-      <img src="img/detectron2_predictions.jpg" alt="Detectron2 model prediction on HiLEx page" />
-      <figcaption><em>Fig:</em> Detectron2 output on the same page, successfully detecting even small Instruction elements that are easily overlooked.</figcaption>
-    </figure>
+    <figure style="max-width:800px; margin:20px auto; text-align:center;">
+  <img src="images/samplepred_transformer.jpg" alt="YOLOv8 model prediction on HiLEx page"
+       style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
+  <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
+    <em>Fig:</em> caption </figcaption>
+</figure>
+
+<figure style="max-width:800px; margin:20px auto; text-align:center;">
+  <img src="images/samplepred_twostage.jpg" alt="Detectron2 model prediction on HiLEx page"
+       style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
+  <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
+    <em>Fig:</em> caption </figcaption>
+</figure>
     <h3>Performance Comparison</h3>
     <p>We visualize the detection performance across models to highlight accuracy vs. complexity trade-offs.</p>
     <figure>
-      <img src="img/map_comparison.jpg" alt="Bar chart comparing mAP scores of all models on HiLEx" />
-      <figcaption><em>Fig:</em> mAP@50 (blue) and mAP@50–95 (orange) for each evaluated model. Two-stage and one-stage models outperform transformer-based on higher IoUs, while VLMs approach one-stage performance in mAP@50.</figcaption>
+      <div class="grid-container">
+        <img src="images/comparison_one_stage.jpg" alt="Image 1">
+        <img src="images/comparison_transformer.jpg" alt="Image 2">
+        <img src="images/comparison_two_stage.jpg" alt="Image 3">
+        <img src="images/comparison_vlm.jpg" alt="Image 4">
+       </div>
+      <figcaption><em>Fig:</em> caption</figcaption>
     </figure>
     <h3>Failure Cases</h3>
     <p>Certain layout elements remained difficult. Two common failure modes are shown below: (1) missed instructions due to unusual formatting or placement, and (2) merged detections where question and answer text were not clearly separated.</p>
-    <figure>
-      <img src="img/error_analysis.jpg" alt="Examples of HiLEx model detection errors" />
-      <figcaption><em>Fig:</em> Left: A model misses a faint instruction line (green) at the top of a question block. Right: An Answer_Block is over-detected, merging with neighboring text.</figcaption>
-    </figure>
+    <figure style="max-width:800px; margin:20px auto; text-align:center;">
+  <img src="images/error_excessive.jpg" alt="Examples of HiLEx model detection errors"
+       style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
+  <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
+    <em>Fig:</em> Excessive
+  </figcaption>
+</figure>
+
+<figure style="max-width:800px; margin:20px auto; text-align:center;">
+  <img src="images/error_missing.jpg" alt="Examples of HiLEx model detection errors"
+       style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
+  <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
+    <em>Fig:</em> Missing
+  </figcaption>
+</figure>
+
     <p>These visualizations help pinpoint where models perform well and where improvements are needed, guiding future research on hierarchical layout understanding.</p>
   </section>
 
