@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>2x2 Image Grid - Full Width</title>
+  <title>HiLEx</title>
+
   <style>
     .grid-container {
       display: grid;
@@ -386,6 +387,13 @@
     <p>Document Layout Analysis (DLA) has advanced significantly in structured domains like invoices, forms, and academic papers. However, the layout understanding of educational content – especially question papers – remains largely underexplored. These documents are inherently multi-modal and hierarchical, containing a mix of textual structures like instructions, questions, answer blocks, and descriptions, often organized in complex multi-column formats.</p>
     <p><strong>HiLEx (Hierarchical Layout Extraction)</strong> is the first large-scale benchmark dataset designed specifically for understanding the layout of question paper images. It comprises 1,965 exam pages collected from eight major exams (GMAT, GRE, SAT, JEE, UPSC, GATE, BANK, and UGC-NET). Each page image is manually annotated with six hierarchical classes: <em>Question_Paper_Area</em>, <em>Question_Block</em>, <em>Answer_Block</em>, <em>Question_Answer_Block</em>, <em>Instruction</em>, and <em>Description</em>. Annotations are provided in both YOLO and COCO formats and were verified by expert annotators, achieving a gold-standard inter-annotator agreement (Cohen’s κ > 0.90).</p>
     <p>By enabling reliable layout extraction in educational contexts, HiLEx opens up opportunities for scalable document understanding, intelligent grading, and inclusive learning technologies. This aligns with broader goals of <a href="https://sdgs.un.org/goals/goal4" target="_blank" rel="noopener">SDG 4 (Quality Education)</a> and <a href="https://sdgs.un.org/goals/goal10" target="_blank" rel="noopener">SDG 10 (Reduced Inequalities)</a>.</p>
+    <figure style="max-width:800px; margin:20px auto; text-align:center;">
+        <img src="images/about.jpg" alt="about img"
+            style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
+        <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
+          <em>Fig:</em> Visualization of the Hierarchical Layout Annotation 
+        </figcaption>
+    </figure>
   </section>
 
   <!-- Dataset Section -->
@@ -518,25 +526,41 @@
     <h3>Ground Truth Layout Annotations</h3>
     <p>Each question paper image is annotated with color-coded boxes for the six structural classes, providing a hierarchical segmentation of the page content.</p>
     <figure>
-      <img src="images/groundtruth.jpg" alt="Sample HiLEx page with ground truth layout annotations" />
+      <img src="images/ground_truth.jpg" alt="Sample HiLEx page with ground truth layout annotations" />
       <figcaption><em>Fig:</em> Example annotations on a question paper page, highlighting Question, Answer, Instruction, Description, etc.</figcaption>
     </figure>
+
     <p><em>Single-Column vs Multi-Column:</em> HiLEx includes both single-column papers and multi-column layouts. The annotations adapt to each style, capturing blocks appropriately in each format.</p>
+    
     <h3>Model Predictions</h3>
     <p>Below are sample outputs from fine-tuned detection models on HiLEx pages. Detected layout components are drawn with class-specific colors.</p>
+    
+    <figure>
+      <img src="images/samplepred_yolo.jpg" alt="Sample HiLEx page with ground truth layout annotations" />
+      <figcaption><em>Fig:</em> Sample predictions from different One-Stage Detector Models </figcaption>
+    </figure>
+    
     <figure style="max-width:800px; margin:20px auto; text-align:center;">
   <img src="images/samplepred_transformer.jpg" alt="YOLOv8 model prediction on HiLEx page"
        style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
   <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
-    <em>Fig:</em> caption </figcaption>
+    <em>Fig:</em> Sample predictions from different Transformer-based Object Detector Models </figcaption>
 </figure>
 
 <figure style="max-width:800px; margin:20px auto; text-align:center;">
   <img src="images/samplepred_twostage.jpg" alt="Detectron2 model prediction on HiLEx page"
        style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
   <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
-    <em>Fig:</em> caption </figcaption>
+    <em>Fig:</em> Sample prediction from Two-Stage Object Detector Model </figcaption>
 </figure>
+
+
+    <figure>
+      <img src="images/samplepred_vlm.jpg" alt="Sample HiLEx page with ground truth layout annotations" />
+      <figcaption><em>Fig:</em> Sample predictions from different Vision-Language Models</figcaption>
+    </figure>
+
+
     <h3>Performance Comparison</h3>
     <p>We visualize the detection performance across models to highlight accuracy vs. complexity trade-offs.</p>
     <figure>
@@ -546,23 +570,25 @@
         <img src="images/comparison_two_stage.jpg" alt="Image 3">
         <img src="images/comparison_vlm.jpg" alt="Image 4">
        </div>
-      <figcaption><em>Fig:</em> caption</figcaption>
+      <figcaption><em>Fig:</em> Performance comparison between the different models of HiLEx. <br>The first row shows One-Stage models and Transformer-based models; the second row shows Two-Stage models and Vision-Language Models.</figcaption>
     </figure>
     <h3>Failure Cases</h3>
     <p>Certain layout elements remained difficult. Two common failure modes are shown below: (1) missed instructions due to unusual formatting or placement, and (2) merged detections where question and answer text were not clearly separated.</p>
-    <figure style="max-width:800px; margin:20px auto; text-align:center;">
-  <img src="images/error_excessive.jpg" alt="Examples of HiLEx model detection errors"
-       style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
-  <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
-    <em>Fig:</em> Excessive
-  </figcaption>
-</figure>
+    
 
 <figure style="max-width:800px; margin:20px auto; text-align:center;">
   <img src="images/error_missing.jpg" alt="Examples of HiLEx model detection errors"
        style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
   <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
-    <em>Fig:</em> Missing
+    <em>Fig:</em> Results showing missed instructions due to unusual formatting or placement
+  </figcaption>
+</figure>
+
+<figure style="max-width:800px; margin:20px auto; text-align:center;">
+  <img src="images/error_excessive.jpg" alt="Examples of HiLEx model detection errors"
+       style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
+  <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
+    <em>Fig:</em> Results showing excessive merging of question and answer text
   </figcaption>
 </figure>
 
