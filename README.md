@@ -87,7 +87,7 @@ To illustrate the content of HiLEx and model performance, below are a few sample
 Figure: An example question paper page from HiLEx with **ground truth annotations. Each colored bounding box corresponds to one of the six layout classes (red = Question\_Paper\_Area, blue = Question\_Block, green = Answer\_Block, etc.), clearly delineating the hierarchical sections of the page.
 
 ![Model detection output](./images/One_Stage_model_comparison_output.png)
-Figure: **Model detection output* on a HiLEx page (YOLOv8 fine-tuned on the dataset). The model’s predicted boxes closely match the ground truth, correctly identifying the question area, answer options, and instructions. This demonstrates that with training on HiLEx, models can learn to segment complex exam page layouts. Minor errors (e.g., a missed small instruction line) highlight the remaining challenges.*
+Figure: **Model detection output* on a HiLEx page (One Stage Detector (Yolo) Models fine-tuned on the dataset). The model’s predicted boxes closely match the ground truth, correctly identifying the question area, answer options, and instructions. This demonstrates that with training on HiLEx, models can learn to segment complex exam page layouts. Minor errors (e.g., a missed small instruction line) highlight the remaining challenges.*
 
 (*Additional examples and visualizations can be found in the repository, including multi-column page layouts, failure cases, and comparison of predictions across different models.)*
 
