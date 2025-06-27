@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 6
+names: ['Answer_Block', 'Description', 'Instruction', 'Question_Answer_Block', 'Question_Block', 'Question_Paper_Area']
+
+roboflow:
+  workspace: questionannotations
+  project: question_normal
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/questionannotations/question_normal/dataset/1
