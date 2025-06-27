@@ -3,7 +3,6 @@
 A Benchmark Dataset for Hierarchical Document Layout Analysis in Education
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey)](https://creativecommons.org/licenses/by/4.0/)
-[![arXiv](https://img.shields.io/badge/arXiv-Preprint-red)](https://arxiv.org/abs/)
 [![GitHub Stars](https://img.shields.io/github/stars/HiLEx-DLA/HiLEx?style=social)](https://github.com/HiLEx-DLA/HiLEx/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/HiLEx-DLA/HiLEx?style=social)](https://github.com/HiLEx-DLA/HiLEx/network/members)
 
@@ -92,34 +91,28 @@ Figure: **Model detection output* on a HiLEx page (YOLOv8 fine-tuned on the data
 
 (*Additional examples and visualizations can be found in the repository, including multi-column page layouts, failure cases, and comparison of predictions across different models.)*
 
-## Citation 📜
+## Citation 📜 ( Will be Updated )
 
 If you use the HiLEx dataset or benchmarks in your research, please cite our paper:
 
 bibtex
 @inproceedings{hilex2025,
   title     = {HiLEx: Image-based Hierarchical Layout Extraction from Question Papers},
-  author    = {Author(s) Redacted},
-  booktitle = {Proceedings of the International Conference on Document Analysis and Recognition (ICDAR)},
+  author    = {Aich Utathya, Chakroborty Shinjini, Sadhukhan Deepan, Saha Tulika, Ghosh Swarnendu},
+  booktitle = {(ICDAR)},
   year      = {2025},
   url       = {https://github.com/HiLEx-DLA/HiLEx}
 }
 
 
-(For convenience, a PDF of the paper is available in the repository. An arXiv preprint link will be added once available.)
+
 
 ## License 📄
 
-The HiLEx dataset is released under the *Creative Commons Attribution 4.0 International (CC BY 4.0)* License. This means you are free to *share* (copy, redistribute) and *adapt* (modify, build upon) the data for any purpose, even commercially, *as long as you give appropriate credit* to the original source. Please see the [CC BY 4.0 license details](https://creativecommons.org/licenses/by/4.0/) for full information. By using this dataset, you agree to attribute the creators in any published work or application that uses it.
+The HiLEx dataset is released under the *Creative Commons Attribution 4.0 International (CC BY 4.0)* License. 
 
 ## Contributing 🤝
 
 We welcome contributions from both researchers and practitioners to enhance HiLEx and its benchmarks! There are several ways you can get involved:
 
-* *Feedback & Issues:* If you encounter any problems with the data or have suggestions for improvement, please open an issue on this GitHub repository. Feedback on annotation edge cases, additional class suggestions, or improvements to documentation is highly appreciated.
-* *Pull Requests:* Feel free to fork the repository and submit pull requests for improvements. This could include better preprocessing scripts, new visualization notebooks, or even new data (e.g. additional annotated pages or extended classes) that could enrich HiLEx. We will review PRs and are open to expanding the dataset in future versions.
-* *Benchmark Results:* If you evaluate new models on HiLEx, you can contribute to our growing *leaderboard*. Fork the repo and add your results (model name, type, mAP\@50, mAP\@50–95, and any notes) to the leaderboard.json (or as specified), then open a PR. We’ll happily include robust new results (with citation to your work if applicable) in the official results table, crediting your contribution.
-
-We’re also interested in hearing how HiLEx is being used in real applications. Educators and developers: if you build something cool (like an exam paper analyzer or an auto-grading tool) using HiLEx, let us know via GitHub discussions or issues! Your feedback and use-cases can guide future improvements.
-
-*Join us in improving document understanding for education –* together we can advance tools that make learning materials more accessible and automated grading more reliable. Thank you for your interest in HiLEx, and happy experimenting!
+* *Feedback & Issues:* If you encounter any problems with the data or have suggestions for improvement, please mail us at **email**
