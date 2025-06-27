@@ -3,7 +3,6 @@
 A Benchmark Dataset for Hierarchical Document Layout Analysis in Education
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey)](https://creativecommons.org/licenses/by/4.0/)
-[![arXiv](https://img.shields.io/badge/arXiv-Preprint-red)](https://arxiv.org/abs/)
 [![GitHub Stars](https://img.shields.io/github/stars/HiLEx-DLA/HiLEx?style=social)](https://github.com/HiLEx-DLA/HiLEx/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/HiLEx-DLA/HiLEx?style=social)](https://github.com/HiLEx-DLA/HiLEx/network/members)
 
