@@ -311,12 +311,15 @@
     /* Images and figures */
     figure {
       text-align: center;
-      margin: 2rem 0;
+      margin: 2rem auto;
+      padding: 1rem 0;
     }
     figure img {
       max-width: 90%;
       height: auto;
       border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
     figure figcaption {
       font-size: 0.9rem;
@@ -324,6 +327,9 @@
       margin-top: 0.5rem;
     }
     /* Citation block */
+    .citation-container {
+      position: relative;
+    }
     pre.citation {
       background: #f8f8ff;
       padding: 1rem;
@@ -331,6 +337,50 @@
       border: 1px solid #e0e0ef;
       border-radius: 4px;
       font-size: 0.9rem;
+    }
+    /* Copy button */
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+    .copy-btn:hover {
+      background: var(--primary-color-dark);
+    }
+    /* Tooltip */
+    .tooltip {
+      position: absolute;
+      top: -30px;
+      right: 0;
+      background: #333;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .tooltip.show {
+      opacity: 1;
+    }
+    .tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 10px;
+      border: 4px solid transparent;
+      border-top-color: #333;
     }
     /* Contact info */
     .contact-info p {
@@ -408,10 +458,9 @@
     <p>Document Layout Analysis (DLA) has advanced significantly in structured domains like invoices, forms, and academic papers. However, the layout understanding of educational content – especially question papers – remains largely underexplored. These documents are inherently multi-modal and hierarchical, containing a mix of textual structures like instructions, questions, answer blocks, and descriptions, often organized in complex multi-column formats.</p>
     <p><strong>HiLEx (Hierarchical Layout Extraction)</strong> is the first large-scale benchmark dataset designed specifically for understanding the layout of question paper images. It comprises 1,965 exam pages collected from eight major exams (GMAT, GRE, SAT, JEE, UPSC, GATE, BANK, and UGC-NET). Each page image is manually annotated with six hierarchical classes: <em>Question_Paper_Area</em>, <em>Question_Block</em>, <em>Answer_Block</em>, <em>Question_Answer_Block</em>, <em>Instruction</em>, and <em>Description</em>. Annotations are provided in both YOLO and COCO formats and were verified by expert annotators, achieving a gold-standard inter-annotator agreement (Cohen’s κ > 0.90).</p>
     <p>By enabling reliable layout extraction in educational contexts, HiLEx opens up opportunities for scalable document understanding, intelligent grading, and inclusive learning technologies. This aligns with broader goals of <a href="https://sdgs.un.org/goals/goal4" target="_blank" rel="noopener">SDG 4 (Quality Education)</a> and <a href="https://sdgs.un.org/goals/goal10" target="_blank" rel="noopener">SDG 10 (Reduced Inequalities)</a>.</p>
-    <figure style="max-width:800px; margin:20px auto; text-align:center;">
-        <img src="images/about.jpg" alt="about img"
-            style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
-        <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
+    <figure>
+        <img src="images/about.jpg" alt="about img" />
+        <figcaption>
           <em>Fig:</em> Visualization of the Hierarchical Layout Annotation 
         </figcaption>
     </figure>
@@ -561,19 +610,19 @@
       <figcaption><em>Fig:</em> Sample predictions from different One-Stage Detector Models </figcaption>
     </figure>
     
-    <figure style="max-width:800px; margin:20px auto; text-align:center;">
-  <img src="images/samplepred_transformer.jpg" alt="YOLOv8 model prediction on HiLEx page"
-       style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
-  <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
-    <em>Fig:</em> Sample predictions from different Transformer-based Object Detector Models </figcaption>
-</figure>
+    <figure>
+      <img src="images/samplepred_transformer.jpg" alt="YOLOv8 model prediction on HiLEx page" />
+      <figcaption>
+        <em>Fig:</em> Sample predictions from different Transformer-based Object Detector Models
+      </figcaption>
+    </figure>
 
-<figure style="max-width:800px; margin:20px auto; text-align:center;">
-  <img src="images/samplepred_twostage.jpg" alt="Detectron2 model prediction on HiLEx page"
-       style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
-  <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
-    <em>Fig:</em> Sample prediction from Two-Stage Object Detector Model </figcaption>
-</figure>
+    <figure>
+      <img src="images/samplepred_twostage.jpg" alt="Detectron2 model prediction on HiLEx page" />
+      <figcaption>
+        <em>Fig:</em> Sample prediction from Two-Stage Object Detector Model
+      </figcaption>
+    </figure>
 
 
     <figure>
@@ -597,21 +646,19 @@
     <p>Certain layout elements remained difficult. Two common failure modes are shown below: (i) missed instructions due to unusual formatting or placement, and (ii) merged detections where question and answer text were not clearly separated.</p>
 
 
-<figure style="max-width:800px; margin:20px auto; text-align:center;">
-  <img src="images/error_missing.jpg" alt="Examples of HiLEx model detection errors"
-       style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
-  <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
-    <em>Fig:</em> Results showing missed instructions due to unusual formatting or placement
-  </figcaption>
-</figure>
+    <figure>
+      <img src="images/error_missing.jpg" alt="Examples of HiLEx model detection errors" />
+      <figcaption>
+        <em>Fig:</em> Results showing missed instructions due to unusual formatting or placement
+      </figcaption>
+    </figure>
 
-<figure style="max-width:800px; margin:20px auto; text-align:center;">
-  <img src="images/error_excessive.jpg" alt="Examples of HiLEx model detection errors"
-       style="width:100%; height:auto; border-radius:8px; box-shadow:0 4px 10px rgba(0, 0, 0, 0.1);" />
-  <figcaption style="font-size:0.95em; color:#555; margin-top:8px;">
-    <em>Fig:</em> Results showing excessive merging of question and answer text
-  </figcaption>
-</figure>
+    <figure>
+      <img src="images/error_excessive.jpg" alt="Examples of HiLEx model detection errors" />
+      <figcaption>
+        <em>Fig:</em> Results showing excessive merging of question and answer text
+      </figcaption>
+    </figure>
 
     <p>These visualizations help pinpoint where models perform well and where improvements are needed, guiding future research on hierarchical layout understanding.</p>
   </section>
@@ -729,13 +776,18 @@
   <section id="citation" class="reveal">
     <h2>Citation</h2>
     <p>If you use the HiLEx dataset, benchmarks, or tools in your research, please cite our paper:</p>
-    <pre class="citation"><code>@inproceedings{hilex2025,
+    <div class="citation-container">
+      <button class="copy-btn" onclick="copyCitation()">Copy</button>
+      <div class="tooltip" id="copyTooltip">Copied!</div>
+      <pre class="citation"><code id="citationText">@inproceedings{hilex2025,
   title     = {{HiLEx}: Image-based Hierarchical Layout Extraction from Question Papers},
-  author    = {Doe, John and Smith, Jane and et al.},
+  author    = {Aich, Utathya and Chakraborty, Shinjini and Sadhukhan, Deepan and Saha, Tulika and Ghosh, Swarnendu},
   booktitle = {Proc. of the Int. Conf. on Document Analysis and Recognition (ICDAR)},
   year      = {2025},
-  url       = {https://github.com/HiLEx-DLA/HiLEx}
+  url       = {https://github.com/HiLEx-DLA/HiLEx},
+  note      = {*Corresponding author: Tulika Saha}
 }</code></pre>
+    </div>
   </section>
 
   <!-- Contact Section -->
@@ -782,6 +834,37 @@
       });
     }, { threshold: 0.1 });
     revealElements.forEach(el => observer.observe(el));
+
+    // Copy citation functionality
+    function copyCitation() {
+      const citationText = document.getElementById('citationText').textContent;
+      const tooltip = document.getElementById('copyTooltip');
+      
+      navigator.clipboard.writeText(citationText).then(() => {
+        // Show tooltip
+        tooltip.classList.add('show');
+        
+        // Hide tooltip after 2 seconds
+        setTimeout(() => {
+          tooltip.classList.remove('show');
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy citation: ', err);
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = citationText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        // Show tooltip
+        tooltip.classList.add('show');
+        setTimeout(() => {
+          tooltip.classList.remove('show');
+        }, 2000);
+      });
+    }
   </script>
 </body>
 </html>
