@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>HiLEx</title>
+  <title>HiLEx – Hierarchical Layout Extraction Dataset</title>
 
   <style>
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* 2 columns */
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
       padding: 20px;
       max-width: 1000px;
@@ -29,48 +30,60 @@
       background-color: #fff;
     }
   </style>
-  <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="HiLEx is a large-scale dataset for Hierarchical Layout Extraction from exam question papers, with 1,965 annotated pages from 8 major exams. Includes hierarchical layout annotations (questions, answers, instructions, etc.), benchmarks with YOLO, Detectron2, DETR, and more." />
+  <meta name="description"
+    content="HiLEx is a large-scale dataset for Hierarchical Layout Extraction from exam question papers, with 1,965 annotated pages from 8 major exams. Includes hierarchical layout annotations (questions, answers, instructions, etc.), benchmarks with YOLO, Detectron2, DETR, and more. Published at ICDAR 2025." />
   <meta name="author" content="HiLEx Team" />
-  <!-- Open Graph meta tags for social sharing -->
   <meta property="og:title" content="HiLEx Dataset: Hierarchical Layout Extraction" />
-  <meta property="og:description" content="A benchmark dataset of exam question paper images with hierarchical layout annotations. 1,965 pages, 6 classes, YOLO/DETR benchmarks, ICDAR 2025." />
+  <meta property="og:description"
+    content="A benchmark dataset of exam question paper images with hierarchical layout annotations. 1,965 pages, 6 classes, YOLO/DETR benchmarks, ICDAR 2025." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://hilex-dla.github.io/HiLEx/" />
   <meta property="og:image" content="img/annotations_sample.jpg" />
   <meta property="og:image:alt" content="Annotated question paper layout example from HiLEx dataset" />
-  <!-- Twitter Card tags (using large summary card) -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="HiLEx: Hierarchical Layout Extraction Dataset" />
-  <meta name="twitter:description" content="1,965 exam pages with hierarchical layout annotations. Benchmark results and visualizations included." />
+  <meta name="twitter:description"
+    content="1,965 exam pages with hierarchical layout annotations. Benchmark results and visualizations included." />
   <meta name="twitter:image" content="img/annotations_sample.jpg" />
-  <title>HiLEx – Hierarchical Layout Extraction Dataset</title>
-  <!-- Google Font for clean sans-serif typography -->
+
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    /* Base styles and CSS Variables */
     :root {
-      --primary-color: #4169e1; /* royal blue */
-      --primary-color-dark: #325ad2; /* a darker shade for gradient */
-      --bg-color: #fdfdfd;         /* pearl white background */
+      --primary-color: #4169e1;
+      --primary-color-dark: #325ad2;
+      --bg-color: #fdfdfd;
       --text-color: #333333;
       --max-width: 1200px;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Open Sans', sans-serif;
       color: var(--text-color);
       background: var(--bg-color);
       line-height: 1.6;
     }
-    header, nav, section, footer { width: 100%; }
-    /* Sticky Navigation Bar */
+
+    header,
+    nav,
+    section,
+    footer {
+      width: 100%;
+    }
+
     nav {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
-      background: rgba(173, 216, 230, 0.55); /* light blue with opacity */
+      background: rgba(173, 216, 230, 0.55);
       backdrop-filter: blur(12px) saturate(160%);
       -webkit-backdrop-filter: blur(12px) saturate(160%);
       border-bottom: 1.5px solid rgba(120, 180, 255, 0.25);
@@ -82,47 +95,52 @@
       z-index: 1000;
       transition: background 0.3s ease, box-shadow 0.3s ease;
     }
+
     nav.scrolled {
-      background: rgba(173, 216, 230, 0.85); /* more opaque on scroll */
+      background: rgba(173, 216, 230, 0.85);
       box-shadow: 0 6px 24px 0 rgba(80, 120, 200, 0.13);
       border-bottom: 2px solid rgba(120, 180, 255, 0.32);
     }
-    /* Navigation Branding (left side) */
+
     .brand {
       flex: 1;
       font-weight: 600;
       font-size: 1.1rem;
     }
+
     .brand a {
       color: var(--primary-color);
-      text-shadow: 0 1px 8px rgba(255,255,255,0.18);
+      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.18);
       text-decoration: none;
       letter-spacing: 1px;
     }
+
     nav.scrolled .brand a {
       color: var(--primary-color-dark);
     }
-    /* Navigation Links (right side) */
+
     #navLinks {
       list-style: none;
       display: flex;
       gap: 1.5rem;
     }
+
     #navLinks li a {
       text-decoration: none;
       color: var(--primary-color-dark);
       font-weight: 600;
       transition: color 0.3s;
-      text-shadow: 0 1px 8px rgba(255,255,255,0.10);
+      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.10);
     }
-    /* Nav link hover effect */
+
     #navLinks li a:hover {
       text-decoration: underline;
     }
+
     nav.scrolled #navLinks li a {
       color: var(--primary-color);
     }
-    /* Mobile menu toggle button */
+
     #navToggle {
       display: none;
       background: none;
@@ -130,46 +148,51 @@
       font-size: 1.5rem;
       color: var(--primary-color-dark);
       cursor: pointer;
-      text-shadow: 0 1px 8px rgba(255,255,255,0.10);
+      text-shadow: 0 1px 8px rgba(255, 255, 255, 0.10);
     }
+
     nav.scrolled #navToggle {
       color: var(--primary-color);
     }
-    /* Responsive: show hamburger and hide links on small screens */
+
     @media (max-width: 768px) {
       #navLinks {
-        display: none; /* hide links by default on mobile */
+        display: none;
         flex-direction: column;
         background: rgba(173, 216, 230, 0.95);
         backdrop-filter: blur(10px) saturate(160%);
         -webkit-backdrop-filter: blur(10px) saturate(160%);
         position: absolute;
-        top: 60px; right: 1rem;
+        top: 60px;
+        right: 1rem;
         padding: 0.5rem 1rem;
-        box-shadow: 0 2px 12px rgba(80,120,200,0.13);
+        box-shadow: 0 2px 12px rgba(80, 120, 200, 0.13);
         border-radius: 10px;
         border: 1.5px solid rgba(120, 180, 255, 0.22);
       }
+
       #navLinks li {
         margin: 0.5rem 0;
       }
+
       #navLinks li a {
         color: var(--primary-color-dark);
         font-weight: 600;
         text-decoration: none;
       }
+
       #navToggle {
         display: block;
         position: absolute;
         right: 1rem;
-        /* top offset to vertically center with nav (approx) */
         top: 10px;
       }
+
       nav.open #navLinks {
         display: flex;
       }
     }
-    /* Hero Section */
+
     #home {
       width: 100vw;
       min-width: 100vw;
@@ -184,41 +207,77 @@
       justify-content: center;
       text-align: center;
     }
+
     #home h1 {
       font-size: 2.5rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
     }
+
     #home p.tagline {
       font-size: 1.2rem;
       margin-bottom: 1.5rem;
     }
-    #home .authors {
-  font-size: 1.1rem;
-  font-weight: 500;
-  }
 
-    /* Section Containers */
+    #home .authors {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    #home .affiliations {
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      opacity: 0.88;
+    }
+
+    #home .hero-links {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    #home .hero-links a {
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      border: 2px solid #fff;
+      border-radius: 6px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    #home .hero-links a:hover {
+      background: #fff;
+      color: var(--primary-color-dark);
+    }
+
     section {
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 4rem 1rem;
     }
+
     section h2 {
       font-size: 2rem;
       color: var(--primary-color);
       margin-bottom: 1rem;
       text-align: center;
     }
+
     section h3 {
       font-size: 1.5rem;
       margin: 2rem 0 1rem;
       color: var(--primary-color);
     }
+
     section p {
       margin-bottom: 1rem;
     }
-    /* About Section specific */
+
     #about h2::after {
       content: "";
       display: block;
@@ -228,7 +287,7 @@
       margin: 0.5rem auto 2rem;
       border-radius: 2px;
     }
-    /* Dataset section lists */
+
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -236,84 +295,98 @@
       margin: 1rem 0 2rem;
       text-align: center;
     }
+
     .stats-grid .stat-item {
       background: #f9f9ff;
       padding: 1rem;
       border: 1px solid #e0e0ef;
       border-radius: 8px;
     }
+
     .stat-item strong {
       display: block;
       font-size: 1.5rem;
       color: var(--primary-color);
     }
-    /* Method model categories grid */
+
     .model-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
       margin-top: 1rem;
     }
+
     .model-family {
-      flex: 1 1 calc(50% - 2rem); /* two per row on medium screens */
+      flex: 1 1 calc(50% - 2rem);
       background: #f9f9ff;
       border: 1px solid #e0e0ef;
       border-radius: 8px;
       padding: 1rem;
       min-width: 280px;
     }
+
     .model-family h3 {
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
       color: var(--primary-color);
     }
+
     .model-family p {
       font-size: 0.95rem;
       margin-bottom: 0.5rem;
     }
-    /* Results highlight list */
+
     .highlights {
       list-style: none;
       padding: 0;
       margin: 1rem 0 2rem;
     }
+
     .highlights li {
       margin: 0.5rem 0;
       padding-left: 1.5rem;
       position: relative;
     }
+
     .highlights li::before {
       content: "🏆";
       position: absolute;
       left: 0;
     }
-    /* Tables (Leaderboard) */
+
     table {
       width: 100%;
       border-collapse: collapse;
       margin: 1rem 0;
       font-size: 0.95rem;
     }
-    table, th, td {
+
+    table,
+    th,
+    td {
       border: 1px solid #cccccc;
     }
-    th, td {
+
+    th,
+    td {
       padding: 0.5rem;
       text-align: center;
     }
+
     th {
       background: #f0f0f8;
     }
-    /* Make table horizontally scrollable on small screens */
+
     .table-container {
       overflow-x: auto;
     }
-    /* Images and figures */
+
     figure {
       text-align: center;
       margin: 2rem auto;
       padding: 1rem 0;
     }
+
     figure img {
       max-width: 90%;
       height: auto;
@@ -321,15 +394,17 @@
       border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+
     figure figcaption {
       font-size: 0.9rem;
       color: #555555;
       margin-top: 0.5rem;
     }
-    /* Citation block */
+
     .citation-container {
       position: relative;
     }
+
     pre.citation {
       background: #f8f8ff;
       padding: 1rem;
@@ -338,7 +413,7 @@
       border-radius: 4px;
       font-size: 0.9rem;
     }
-    /* Copy button */
+
     .copy-btn {
       position: absolute;
       top: 8px;
@@ -353,10 +428,11 @@
       font-weight: 500;
       transition: background-color 0.3s ease;
     }
+
     .copy-btn:hover {
       background: var(--primary-color-dark);
     }
-    /* Tooltip */
+
     .tooltip {
       position: absolute;
       top: -30px;
@@ -371,9 +447,11 @@
       pointer-events: none;
       transition: opacity 0.3s ease;
     }
+
     .tooltip.show {
       opacity: 1;
     }
+
     .tooltip::after {
       content: '';
       position: absolute;
@@ -382,29 +460,52 @@
       border: 4px solid transparent;
       border-top-color: #333;
     }
-    /* Contact info */
+
     .contact-info p {
       margin-bottom: 0.5rem;
     }
+
     .contact-info a {
       color: var(--primary-color);
       text-decoration: none;
     }
+
     .contact-info a:hover {
       text-decoration: underline;
     }
-    /* Scroll-in reveal animations */
-    .reveal { 
+
+    .reveal {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
+
     .visible {
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Authors table */
+    .authors-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    .authors-table th {
+      background: #f0f0f8;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    .authors-table td {
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #ccc;
+    }
   </style>
 </head>
+
 <body>
   <!-- Navigation Bar -->
   <nav>
@@ -424,107 +525,108 @@
     </ul>
   </nav>
 
-  <!-- Home Hero Section -->
-  <!-- <section id="home">
-    <h1>HiLEx: Hierarchical Layout Extraction</h1>
-    <p class="tagline">A large-scale benchmark for educational layout analysis</p>
-    <p>Presented at ICDAR 2025 – International Conference on Document Analysis and Recognition</p>
-    <!-- Example call-to-action buttons (optional) -->
-    <!--
-    <a href="https://github.com/HiLEx-DLA/HiLEx" class="btn">View on GitHub</a>
-    <a href="hilex_paper.pdf" class="btn">Download Paper (PDF)</a>
-    -->
- 
-
+  <!-- Hero Section -->
   <section id="home">
-  <h1>HiLEx: Image-based Hierarchical Layout Extraction <br> from Question Papers</h1>
-  <p class="authors">
-  <br>Utathya Aich, Shinjini Chakraborty, Deepan Sadhukhan, Tulika Saha, and Swarnendu Ghosh
-  </p>
-
-  <!-- <p>
-    <sup>1</sup>CNH Industrial ITC, India<br>
-    <sup>2</sup>Institute of Engineering & Management, Kolkata, India<br>
-    <sup>3</sup>University of Engineering and Management, Kolkata, India<br>
-    <sup>4</sup>International Institute of Information Technology Bangalore, Kolkata
-  </p> -->
-  <!-- <p><strong>*Corresponding Author:</strong> tulika@email.id</p> -->
-</section>
-
+    <h1>HiLEx: Image-based Hierarchical Layout Extraction<br>from Question Papers</h1>
+    <p class="authors">
+      <br>Utathya Aich, Shinjini Chakraborty, Deepan Sadhukhan, Swarnendu Ghosh, and Tulika Saha
+    </p>
+    <p class="affiliations">
+      CNH Industrial ITC &nbsp;·&nbsp; Institute of Engineering &amp; Management &nbsp;·&nbsp;
+      University of Engineering and Management &nbsp;·&nbsp; IIIT Bangalore
+    </p>
+    <p style="margin-top:0.8rem; font-size:0.95rem; opacity:0.9;">
+      Published at <strong>ICDAR 2025</strong> — Document Analysis and Recognition
+    </p>
+    <div class="hero-links">
+      <a href="https://link.springer.com/chapter/10.1007/978-3-032-04627-7_28" target="_blank" rel="noopener">📄 Paper
+        (Springer)</a>
+      <a href="https://github.com/HiLEx-DLA/HiLEx" target="_blank" rel="noopener">💻 GitHub</a>
+      <a href="#dataset">📦 Dataset</a>
+      <a href="#citation">📜 Cite</a>
+    </div>
+  </section>
 
   <!-- About Section -->
   <section id="about" class="reveal">
     <h2>About HiLEx</h2>
-    <p>Document Layout Analysis (DLA) has advanced significantly in structured domains like invoices, forms, and academic papers. However, the layout understanding of educational content – especially question papers – remains largely underexplored. These documents are inherently multi-modal and hierarchical, containing a mix of textual structures like instructions, questions, answer blocks, and descriptions, often organized in complex multi-column formats.</p>
-    <p><strong>HiLEx (Hierarchical Layout Extraction)</strong> is the first large-scale benchmark dataset designed specifically for understanding the layout of question paper images. It comprises 1,965 exam pages collected from eight major exams (GMAT, GRE, SAT, JEE, UPSC, GATE, BANK, and UGC-NET). Each page image is manually annotated with six hierarchical classes: <em>Question_Paper_Area</em>, <em>Question_Block</em>, <em>Answer_Block</em>, <em>Question_Answer_Block</em>, <em>Instruction</em>, and <em>Description</em>. Annotations are provided in both YOLO and COCO formats and were verified by expert annotators, achieving a gold-standard inter-annotator agreement (Cohen’s κ > 0.90).</p>
-    <p>By enabling reliable layout extraction in educational contexts, HiLEx opens up opportunities for scalable document understanding, intelligent grading, and inclusive learning technologies. This aligns with broader goals of <a href="https://sdgs.un.org/goals/goal4" target="_blank" rel="noopener">SDG 4 (Quality Education)</a> and <a href="https://sdgs.un.org/goals/goal10" target="_blank" rel="noopener">SDG 10 (Reduced Inequalities)</a>.</p>
+    <p>Document Layout Analysis (DLA) has advanced significantly in structured domains like invoices, forms, and
+      academic papers. However, the layout understanding of educational content – especially question papers – remains
+      largely underexplored. These documents are inherently multi-modal and hierarchical, containing a mix of textual
+      structures like instructions, questions, answer blocks, and descriptions, often organized in complex multi-column
+      formats.</p>
+    <p><strong>HiLEx (Hierarchical Layout Extraction)</strong> is the first large-scale benchmark dataset designed
+      specifically for understanding the layout of question paper images. It comprises 1,965 exam pages collected from
+      eight major exams (GMAT, GRE, SAT, JEE, UPSC, GATE, BANK, and UGC-NET). Each page image is manually annotated with
+      six hierarchical classes: <em>Question_Paper_Area</em>, <em>Question_Block</em>, <em>Answer_Block</em>,
+      <em>Question_Answer_Block</em>, <em>Instruction</em>, and <em>Description</em>. Annotations are provided in both
+      YOLO and COCO formats and were verified by expert annotators, achieving a gold-standard inter-annotator agreement
+      (Cohen's κ &gt; 0.90).
+    </p>
+    <p>By enabling reliable layout extraction in educational contexts, HiLEx opens up opportunities for scalable
+      document understanding, intelligent grading, and inclusive learning technologies. This aligns with broader goals
+      of <a href="https://sdgs.un.org/goals/goal4" target="_blank" rel="noopener">SDG 4 (Quality Education)</a> and <a
+        href="https://sdgs.un.org/goals/goal10" target="_blank" rel="noopener">SDG 10 (Reduced Inequalities)</a>.</p>
     <figure>
-        <img src="images/about.jpg" alt="about img" />
-        <figcaption>
-          <em>Fig:</em> Visualization of the Hierarchical Layout Annotation 
-        </figcaption>
+      <img src="images/about.jpg" alt="Visualization of the Hierarchical Layout Annotation" />
+      <figcaption><em>Fig:</em> Visualization of the Hierarchical Layout Annotation</figcaption>
     </figure>
   </section>
 
   <!-- Dataset Section -->
   <section id="dataset" class="reveal">
     <h2>HiLEx Dataset</h2>
-    <p>The HiLEx dataset is a curated benchmark for hierarchical layout analysis in educational documents, specifically designed for question papers that exhibit diverse and complex visual structures. It addresses a major gap in existing DLA benchmarks by targeting the education domain—an area rich in practical use cases like exam digitization, automated grading, and content retrieval.</p>
+    <p>The HiLEx dataset is a curated benchmark for hierarchical layout analysis in educational documents, specifically
+      designed for question papers that exhibit diverse and complex visual structures. It addresses a major gap in
+      existing DLA benchmarks by targeting the education domain—an area rich in practical use cases like exam
+      digitization, automated grading, and content retrieval.</p>
     <h3>Key Statistics</h3>
     <div class="stats-grid">
-      <div class="stat-item">
-        <strong>1,965</strong>
-        Images
-      </div>
-      <div class="stat-item">
-        <strong>8</strong>
-        Exams Covered
-      </div>
-      <div class="stat-item">
-        <strong>English</strong>
-        Language
-      </div>
-      <div class="stat-item">
-        <strong>6</strong>
-        Layout Classes
-      </div>
-      <div class="stat-item">
-        <strong>2</strong>
-        Annotation Formats
-      </div>
-      <div class="stat-item">
-        <strong>CC BY 4.0</strong>
-        License
-      </div>
+      <div class="stat-item"><strong>1,965</strong>Images</div>
+      <div class="stat-item"><strong>8</strong>Exams Covered</div>
+      <div class="stat-item"><strong>English</strong>Language</div>
+      <div class="stat-item"><strong>6</strong>Layout Classes</div>
+      <div class="stat-item"><strong>2</strong>Annotation Formats</div>
+      <div class="stat-item"><strong>CC BY 4.0</strong>License</div>
     </div>
     <h3>Annotation Hierarchy</h3>
     <p>Each document image is annotated with a six-class hierarchical layout schema:</p>
     <ul>
       <li><strong>Question_Paper_Area:</strong> Full region containing the entire exam content.</li>
-      <li><strong>Question_Answer_Block:</strong> Combined region containing both a question and its answer choices.</li>
+      <li><strong>Question_Answer_Block:</strong> Combined region containing both a question and its answer choices.
+      </li>
       <li><strong>Question_Block:</strong> Question text only (excluding answer choices).</li>
       <li><strong>Answer_Block:</strong> Answer options (multiple choice options, numeric answers, etc.).</li>
       <li><strong>Instruction:</strong> Guidelines or section-level directions included in the paper.</li>
       <li><strong>Description:</strong> Explanatory content or solutions (e.g., an answer explanation segment).</li>
     </ul>
-    <p>This hierarchy captures the structured and nested nature of question papers across both single-column and multi-column layouts.</p>
+    <p>This hierarchy captures the structured and nested nature of question papers across both single-column and
+      multi-column layouts.</p>
     <h3>Annotation Process</h3>
-    <p>All annotations were performed manually by three domain experts, followed by multi-phase quality control. Final annotations achieved Cohen’s κ > 0.90, indicating very high inter-annotator agreement and reliability.</p>
-    <h3>Data Distribution & Access</h3>
-    <p>HiLEx includes exam content from both national and international assessments, supporting cross-cultural analysis. The dataset is publicly available under the <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Attribution 4.0 (CC BY 4.0)</a> license. You can access the data and tools from our GitHub repository:</p>
-    <p><strong>GitHub:</strong> <a href="https://github.com/HiLEx-DLA/HiLEx" target="_blank" rel="noopener">HiLEx-DLA/HiLEx</a></p>
+    <p>All annotations were performed manually by three domain experts, followed by multi-phase quality control. Final
+      annotations achieved Cohen's κ &gt; 0.90, indicating very high inter-annotator agreement and reliability.</p>
+    <h3>Data Distribution &amp; Access</h3>
+    <p>HiLEx includes exam content from both national and international assessments, supporting cross-cultural analysis.
+      The dataset is publicly available under the <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"
+        rel="noopener">Creative Commons Attribution 4.0 (CC BY 4.0)</a> license.</p>
+    <p><strong>GitHub:</strong> <a href="https://github.com/HiLEx-DLA/HiLEx" target="_blank"
+        rel="noopener">HiLEx-DLA/HiLEx</a></p>
     <p>The repository provides:</p>
     <ul>
-      <li><em>Images:</em> 1,965 question paper page images from 8 exams (listed above).</li>
-      <li><em>Annotations:</em> Bounding boxes for the six layout classes, in both YOLO text files and COCO JSON format.</li>
-      <li><em>Documentation:</em> A README with dataset details, class definitions, and sample visualization scripts.</li>
+      <li><em>Images:</em> 1,965 question paper page images from 8 exams.</li>
+      <li><em>Annotations:</em> Bounding boxes for the six layout classes, in both YOLO text files and COCO JSON format.
+      </li>
+      <li><em>Documentation:</em> A README with dataset details, class definitions, and sample visualization scripts.
+      </li>
     </ul>
   </section>
 
   <!-- Method Section -->
   <section id="method" class="reveal">
     <h2>Method</h2>
-    <p>To evaluate the effectiveness of the HiLEx dataset, we benchmarked a diverse set of object detection models spanning multiple architectural paradigms. Each model was trained to detect the six hierarchical layout categories within question paper images, enabling a thorough comparison of their capabilities on this task.</p>
+    <p>To evaluate the effectiveness of the HiLEx dataset, we benchmarked a diverse set of object detection models
+      spanning multiple architectural paradigms. Each model was trained to detect the six hierarchical layout categories
+      within question paper images, enabling a thorough comparison of their capabilities on this task.</p>
     <h3>Model Categories</h3>
     <p>We grouped the evaluated models into four families:</p>
     <div class="model-grid">
@@ -545,7 +647,8 @@
       </div>
       <div class="model-family">
         <h3>Vision-Language Models (VLMs)</h3>
-        <p>Pre-trained multi-modal models that understand images and text jointly, allowing zero-shot layout detection.</p>
+        <p>Pre-trained multi-modal models that understand images and text jointly, allowing zero-shot layout detection.
+        </p>
         <p><em>Examples:</em> Florence-2, PaLI-Gemma2</p>
       </div>
     </div>
@@ -555,119 +658,101 @@
       <li><strong>Platform:</strong> Google Colab with NVIDIA A100 GPU</li>
       <li><strong>Epochs:</strong> 25</li>
       <li><strong>Batch Size:</strong> 16</li>
-      <li><strong>Optimizer:</strong> AdamW</li>
       <li><strong>Data Split:</strong> 80% Train / 10% Validation / 10% Test</li>
       <li><strong>Metrics:</strong> Precision, Recall, mAP@50, and mAP@50–95</li>
     </ul>
-    <h3>Example Pipeline</h3>
-    <p>During inference, each page image is processed by a trained model to detect hierarchical layout blocks (questions, answers, instructions, etc.). For YOLO-based detectors, we used Ultralytics YOLO pipelines; for transformer models like DETR, we leveraged HuggingFace and MMDetection frameworks. Model outputs were evaluated using IoU-based metrics and both per-class and overall averages.</p>
-    <p>A typical evaluation pipeline included:</p>
-    <ul>
-      <li>Image pre-processing (resizing and normalization)</li>
-      <li>Model inference to obtain bounding boxes for each class</li>
-      <li>Metric computation (IoU, precision, recall for each class and overall)</li>
-      <li>Error analysis and class-wise performance breakdown</li>
-    </ul>
-    <p>The results of this benchmarking are summarized below and on the Leaderboard, allowing comparison across model types and layout categories.</p>
+    <p>A typical evaluation pipeline included image pre-processing (resizing and normalization), model inference to
+      obtain bounding boxes for each class, metric computation (IoU, precision, recall for each class and overall), and
+      error analysis and class-wise performance breakdown.</p>
   </section>
 
   <!-- Results Section -->
   <section id="results" class="reveal">
     <h2>Results</h2>
-    <p>We evaluated HiLEx across a diverse set of models representing four major detection paradigms: one-stage, two-stage, transformer, and vision-language. All models were trained and tested on the same dataset split and evaluation criteria to ensure comparability.</p>
+    <p>We evaluated HiLEx across a diverse set of models representing four major detection paradigms: one-stage,
+      two-stage, transformer, and vision-language. All models were trained and tested on the same dataset split and
+      evaluation criteria to ensure comparability.</p>
     <h3>Key Highlights</h3>
     <ul class="highlights">
-      <li>Best overall performance: <strong>Detectron2</strong> with mAP@50 of 94.0% (two-stage fine-tuned detector)</li>
-      <li>Strong one-stage performance: <strong>YOLOv8</strong> achieved mAP@50 of 84.8% with competitive speed and generalization</li>
-      <li>Most balanced (high IoU) detection: <strong>YOLOv11</strong> had the highest mAP@50–95 (68.9%), indicating robust localization</li>
-      <li>Vision-Language model promise: <strong>PaLI-Gemma2</strong> (zero-shot) reached 83.5% mAP@50, showing feasibility of layout detection without fine-tuning</li>
+      <li>Best overall performance: <strong>Detectron2</strong> with mAP@50 of 94.0% (two-stage fine-tuned detector)
+      </li>
+      <li>Strong one-stage performance: <strong>YOLOv8</strong> achieved mAP@50 of 84.8% with competitive speed and
+        generalization</li>
+      <li>Most precise localization: <strong>YOLOv11</strong> had the highest mAP@50–95 (68.9%), indicating robust
+        localization at stricter IoU thresholds</li>
+      <li>Best zero-shot result: <strong>PaLI-Gemma2</strong> reached 83.5% mAP@50 without any fine-tuning on HiLEx</li>
     </ul>
-    <p>All models were evaluated on six layout classes with standard IoU thresholds (0.5 for mAP@50, and 0.5–0.95 for mAP@50–95). Detectron2, a two-stage model, attained the highest overall accuracy, while YOLO variants offered strong performance with lighter models. Vision-language models performed surprisingly well in zero-shot mode, though slightly behind fine-tuned models.</p>
     <h3>Class-wise Trends</h3>
-    <p><em>Question_Paper_Area</em> and <em>Question_Answer_Block</em> were consistently detected with high precision across models, likely due to their large size and distinctive structure. In contrast, <em>Instruction</em> and <em>Description</em> were the most challenging classes – many models struggled to detect these smaller, variably formatted elements, leading to lower recall for those classes. Notably, YOLOv11 excelled at localizing fine-grained Answer_Block regions, while PaLI-Gemma2 demonstrated strong generalization to unseen layouts despite not being fine-tuned.</p>
+    <p><em>Question_Paper_Area</em> and <em>Question_Answer_Block</em> were consistently detected with high precision
+      across models, likely due to their large size and distinctive structure. In contrast, <em>Instruction</em> and
+      <em>Description</em> were the most challenging classes – many models struggled to detect these smaller, variably
+      formatted elements, leading to lower recall for those classes.
+    </p>
     <h3>Error Analysis</h3>
-    <p>Common errors observed included over-detection in densely packed answer sections (multiple boxes around the same answer block) and missed instructions when their font style or placement differed from training examples. Vision-language models occasionally confused descriptions for question text blocks. These insights point to areas for future improvement, such as specialized handling of instruction text and better differentiation between similar text elements.</p>
+    <p>Common errors included over-detection in densely packed answer sections (multiple boxes around the same answer
+      block) and missed instructions when their font style or placement differed from training examples. Vision-language
+      models occasionally confused descriptions for question text blocks. These insights point to areas for future
+      improvement, such as specialized handling of instruction text and better differentiation between similar text
+      elements.</p>
   </section>
 
   <!-- Visualizations Section -->
   <section id="visualizations" class="reveal">
     <h2>Visualizations</h2>
-    <p>HiLEx features richly annotated pages with diverse layouts – from dense multi-column competitive exams to simpler single-question formats. Below we present key visual examples illustrating the dataset and model performance.</p>
+    <p>HiLEx features richly annotated pages with diverse layouts – from dense multi-column competitive exams to simpler
+      single-question formats. Below we present key visual examples illustrating the dataset and model performance.</p>
     <h3>Ground Truth Layout Annotations</h3>
-    <p>Each question paper image is annotated with color-coded boxes for the six structural classes, providing a hierarchical segmentation of the page content.</p>
     <figure>
       <img src="images/ground_truth.jpg" alt="Sample HiLEx page with ground truth layout annotations" />
-      <figcaption><em>Fig:</em> Example annotations on a question paper page, highlighting Question, Answer, Instruction, Description, etc.</figcaption>
+      <figcaption><em>Fig:</em> Example annotations on a question paper page, highlighting Question, Answer,
+        Instruction, Description, etc.</figcaption>
     </figure>
-
-    <p><em>Single-Column vs Multi-Column:</em> HiLEx includes both single-column papers and multi-column layouts. The annotations adapt to each style, capturing blocks appropriately in each format.</p>
-    
+    <p><em>Single-Column vs Multi-Column:</em> HiLEx includes both single-column papers and multi-column layouts. The
+      annotations adapt to each style, capturing blocks appropriately in each format.</p>
     <h3>Model Predictions</h3>
-    <p>Below are sample outputs from fine-tuned detection models on HiLEx pages. Detected layout components are drawn with class-specific colors.</p>
-    
     <figure>
-      <img src="images/samplepred_yolo.jpg" alt="Sample HiLEx page with ground truth layout annotations" />
-      <figcaption><em>Fig:</em> Sample predictions from different One-Stage Detector Models </figcaption>
+      <img src="images/samplepred_yolo.jpg" alt="Sample predictions from One-Stage Detector Models" />
+      <figcaption><em>Fig:</em> Sample predictions from different One-Stage Detector Models</figcaption>
     </figure>
-    
     <figure>
-      <img src="images/samplepred_transformer.jpg" alt="YOLOv8 model prediction on HiLEx page" />
-      <figcaption>
-        <em>Fig:</em> Sample predictions from different Transformer-based Object Detector Models
-      </figcaption>
+      <img src="images/samplepred_transformer.jpg" alt="Sample predictions from Transformer-based models" />
+      <figcaption><em>Fig:</em> Sample predictions from different Transformer-based Object Detector Models</figcaption>
     </figure>
-
     <figure>
-      <img src="images/samplepred_twostage.jpg" alt="Detectron2 model prediction on HiLEx page" />
-      <figcaption>
-        <em>Fig:</em> Sample prediction from Two-Stage Object Detector Model
-      </figcaption>
+      <img src="images/samplepred_twostage.jpg" alt="Sample prediction from Two-Stage Object Detector" />
+      <figcaption><em>Fig:</em> Sample prediction from Two-Stage Object Detector Model</figcaption>
     </figure>
-
-
     <figure>
-      <img src="images/samplepred_vlm.jpg" alt="Sample HiLEx page with ground truth layout annotations" />
+      <img src="images/samplepred_vlm.jpg" alt="Sample predictions from Vision-Language Models" />
       <figcaption><em>Fig:</em> Sample predictions from different Vision-Language Models</figcaption>
     </figure>
-
-
     <h3>Performance Comparison</h3>
-    <p>We visualize the detection performance across models to highlight accuracy vs. complexity trade-offs.</p>
     <figure>
       <div class="grid-container">
-        <img src="images/comparison_one_stage.jpg" alt="Image 1">
-        <img src="images/comparison_transformer.jpg" alt="Image 2">
-        <img src="images/comparison_two_stage.jpg" alt="Image 3">
-        <img src="images/comparison_vlm.jpg" alt="Image 4">
-       </div>
-      <figcaption><em>Fig:</em> Performance comparison between the different models of HiLEx. <br>The first row shows One-Stage models and Transformer-based models; the second row shows Two-Stage models and Vision-Language Models.</figcaption>
+        <img src="images/comparison_one_stage.jpg" alt="One-Stage model comparison">
+        <img src="images/comparison_transformer.jpg" alt="Transformer model comparison">
+        <img src="images/comparison_two_stage.jpg" alt="Two-Stage model comparison">
+        <img src="images/comparison_vlm.jpg" alt="Vision-Language model comparison">
+      </div>
+      <figcaption><em>Fig:</em> Performance comparison between the different models of HiLEx.<br>Top row: One-Stage and
+        Transformer-based models; Bottom row: Two-Stage and Vision-Language models.</figcaption>
     </figure>
     <h3>Failure Cases</h3>
-    <p>Certain layout elements remained difficult. Two common failure modes are shown below: (i) missed instructions due to unusual formatting or placement, and (ii) merged detections where question and answer text were not clearly separated.</p>
-
-
     <figure>
-      <img src="images/error_missing.jpg" alt="Examples of HiLEx model detection errors" />
-      <figcaption>
-        <em>Fig:</em> Results showing missed instructions due to unusual formatting or placement
-      </figcaption>
+      <img src="images/error_missing.jpg" alt="Error analysis: missing predictions" />
+      <figcaption><em>Fig:</em> Results showing missed instructions due to unusual formatting or placement</figcaption>
     </figure>
-
     <figure>
-      <img src="images/error_excessive.jpg" alt="Examples of HiLEx model detection errors" />
-      <figcaption>
-        <em>Fig:</em> Results showing excessive merging of question and answer text
-      </figcaption>
+      <img src="images/error_excessive.jpg" alt="Error analysis: excessive predictions" />
+      <figcaption><em>Fig:</em> Results showing excessive/overlapping detections</figcaption>
     </figure>
-
-    <p>These visualizations help pinpoint where models perform well and where improvements are needed, guiding future research on hierarchical layout understanding.</p>
   </section>
 
   <!-- Leaderboard Section -->
   <section id="leaderboard" class="reveal">
     <h2>Leaderboard</h2>
-    <p>The table below presents the benchmarking results of various models on the HiLEx dataset. Models are grouped by architecture type. We report performance using mAP@50 and mAP@50–95 (mean average precision at IoU 0.5 and 0.5:0.95, respectively), which are standard object detection metrics.</p>
-    <p>All models were trained on the same training set and evaluated on an identical test set of HiLEx (covering all six layout classes). This ensures an apples-to-apples comparison of model capabilities.</p>
+    <p>The table below presents the benchmarking results of various models on the HiLEx dataset. All models were trained
+      on the same training set and evaluated on an identical test set covering all six layout classes.</p>
     <div class="table-container">
       <table>
         <tr>
@@ -679,11 +764,11 @@
           <th>mAP@50–95</th>
         </tr>
         <tr>
-          <td>Detectron2</td>
+          <td><strong>Detectron2</strong></td>
           <td>Two-Stage</td>
           <td>Fine-tuned</td>
           <td>~41M</td>
-          <td>94.0%</td>
+          <td><strong>94.0%</strong></td>
           <td>67.3%</td>
         </tr>
         <tr>
@@ -695,12 +780,28 @@
           <td>66.1%</td>
         </tr>
         <tr>
+          <td>PaLI-Gemma2</td>
+          <td>Vision-Language</td>
+          <td>Zero-shot</td>
+          <td>&gt;1B</td>
+          <td>83.5%</td>
+          <td>59.0%</td>
+        </tr>
+        <tr>
           <td>YOLOv11</td>
           <td>One-Stage</td>
           <td>Fine-tuned</td>
           <td>~50M</td>
           <td>82.2%</td>
-          <td>68.9%</td>
+          <td><strong>68.9%</strong></td>
+        </tr>
+        <tr>
+          <td>Florence-2</td>
+          <td>Vision-Language</td>
+          <td>Zero-shot</td>
+          <td>&gt;1B</td>
+          <td>81.0%</td>
+          <td>59.0%</td>
         </tr>
         <tr>
           <td>RT-DETR</td>
@@ -718,58 +819,51 @@
           <td>50.2%</td>
           <td>35.0%</td>
         </tr>
-        <tr>
-          <td>PaLI-Gemma2</td>
-          <td>Vision-Language</td>
-          <td>Zero-shot</td>
-          <td>&gt;1B</td>
-          <td>83.5%</</td>
-          <td>59.0%</td>
-        </tr>
-        <tr>
-          <td>Florence-2</td>
-          <td>Vision-Language</td>
-          <td>Zero-shot</td>
-          <td>&gt;1B</td>
-          <td>81.0%</td>
-          <td>59.0%</td>
-        </tr>
       </table>
     </div>
-    <p><small><em>Note:</em> All metrics are averaged across the six layout classes. Vision-Language models (Florence-2, PaLI-Gemma2) were evaluated in zero-shot mode (no fine-tuning on HiLEx).</small></p>
+    <p><small><em>Note:</em> All metrics are averaged across the six layout classes. Vision-Language models (Florence-2,
+        PaLI-Gemma2) were evaluated in zero-shot mode (no fine-tuning on HiLEx).</small></p>
     <h3>Insights</h3>
     <ul>
-      <li><strong>Most accurate class overall:</strong> Question_Paper_Area (easiest to detect due to its large size and page-border placement).</li>
-      <li><strong>Most challenging classes:</strong> Instruction and Description (due to small size and varied formatting).</li>
+      <li><strong>Most accurate class overall:</strong> Question_Paper_Area (easiest to detect due to its large size and
+        page-border placement).</li>
+      <li><strong>Most challenging classes:</strong> Instruction and Description (due to small size and varied
+        formatting).</li>
       <li><strong>Top fine-tuned model:</strong> Detectron2 (highest mAP@50, excels at precise detection).</li>
-      <li><strong>Best generalization:</strong> YOLOv11 (highest mAP@50–95, indicating good performance on stricter IoU).</li>
-      <li><strong>Zero-shot leader:</strong> PaLI-Gemma2 (demonstrated strong results without any training on HiLEx).</li>
+      <li><strong>Best strict-IoU localization:</strong> YOLOv11 (highest mAP@50–95).</li>
+      <li><strong>Zero-shot leader:</strong> PaLI-Gemma2 (strong results without any training on HiLEx).</li>
     </ul>
-    <h3>Submission Instructions</h3>
-    <p>If you evaluate a new model on HiLEx and wish to have it listed on the leaderboard:</p>
-    <ol>
-      <li>Fork the GitHub repository and add your results to the <code>leaderboard.json</code> (or relevant file).</li>
-      <li>Include the model name, architecture type, parameter count, whether it was fine-tuned or zero-shot, and its mAP@50 and mAP@50–95 on HiLEx.</li>
-      <li>Include a citation (BibTeX or URL) for your model/paper if applicable.</li>
-      <li>Open a Pull Request with your changes. Our team will review it and, upon verification, merge it to update the official leaderboard.</li>
-    </ol>
-    <p>We encourage the community to test novel models on HiLEx – let’s drive forward progress in document layout understanding!</p>
+    <h3>Submit Your Results</h3>
+    <p>If you evaluate a new model on HiLEx and wish to be listed on the leaderboard, open a Pull Request on the <a
+        href="https://github.com/HiLEx-DLA/HiLEx" target="_blank" rel="noopener">GitHub repository</a> with your model
+      name, type, parameter count, training mode, and mAP scores. Our team will review and merge verified results.</p>
   </section>
 
   <!-- Paper Section -->
   <section id="paper" class="reveal">
     <h2>Paper</h2>
     <p><strong>HiLEx: Image-based Hierarchical Layout Extraction from Question Papers</strong><br>
-       <em>Presented at the International Conference on Document Analysis and Recognition (ICDAR) 2025</em></p>
-    <p><strong>Authors:</strong> [Names omitted for brevity]</p>
+      <em>Published in: Document Analysis and Recognition – ICDAR 2025, Springer Nature Switzerland, pp. 485–505</em>
+    </p>
+    <p><strong>Authors:</strong> Utathya Aich, Shinjini Chakraborty, Deepan Sadhukhan, Swarnendu Ghosh, and Tulika Saha
+    </p>
     <p>
-      📄 <a href="https://arxiv.org/abs/xxxxx" target="_blank" rel="noopener">Preprint on arXiv</a> &nbsp; | &nbsp;
-      📘 <a href="files/HiLEx_ICDAR2025.pdf" target="_blank" rel="noopener">PDF Download</a> &nbsp; | &nbsp;
+      📄 <a href="https://link.springer.com/chapter/10.1007/978-3-032-04627-7_28" target="_blank" rel="noopener">Paper
+        on Springer</a> &nbsp;|&nbsp;
       💻 <a href="https://github.com/HiLEx-DLA/HiLEx" target="_blank" rel="noopener">GitHub Repo</a>
     </p>
     <h3>Abstract</h3>
-    <p>We introduce HiLEx, a new large-scale dataset and benchmark for hierarchical layout analysis in question paper images. HiLEx includes 1,965 exam pages annotated with six layout elements (questions, answers, instructions, etc.), covering content from eight diverse exams. We benchmark a range of models — including YOLOv8–12, Detectron2, RT-DETR, Florence-2, and PaLI-Gemma2 — and report state-of-the-art results using a two-stage fine-tuned detector. Our findings highlight the challenges of detecting instructions and descriptions, and the promise of vision-language models for future multi-modal layout tasks. This work aims to advance automated document understanding in education, supporting inclusive learning technologies aligned with SDG 4 and SDG 10.</p>
-    <p><em>For full details and results, please refer to the paper and code linked above.</em></p>
+    <p>Education is the cornerstone of societal progress, yet automated document layout understanding in the education
+      domain remains significantly under-explored, with most research focusing on individual components like texts,
+      tables, and images instead of a holistic understanding. Despite the increasing demand for AI-driven assessment,
+      digitization, and retrieval of educational resources, very few dedicated works exist for question paper layout
+      analysis, a critical component of automated learning systems. To bridge this gap, we introduce the first dataset
+      HiLEx, explicitly designed for structure analysis and layout extraction from question paper images. The HiLEx
+      dataset is curated from eight diverse examination formats. With over 1,900 annotations with different structural
+      layouts, covering both single-column and multi-column layouts, it ensures robust generalization across different
+      structural variations. We conduct a thorough empirical study with contemporary object detection models, exposing
+      their limitations in structural understanding and format generalization. Our findings lay the groundwork for Smart
+      AI solutions in education, fostering automated grading, question retrieval, and equitable learning access.</p>
   </section>
 
   <!-- Citation Section -->
@@ -782,13 +876,12 @@
       <pre class="citation"><code id="citationText">@InProceedings{10.1007/978-3-032-04627-7_28,
   author    = {Aich, Utathya and Chakraborty, Shinjini and Sadhukhan, Deepan and Ghosh, Swarnendu and Saha, Tulika},
   editor    = {Yin, Xu-Cheng and Karatzas, Dimosthenis and Lopresti, Daniel},
-  title     = {HiLEx: Image-Based Hierarchical Layout Extraction from Question Papers},
-  booktitle = {Document Analysis and Recognition --  ICDAR 2025},
+  title     = {HiLEx: Image-Based Hierarchical Layout Extraction from Question Papers},
+  booktitle = {Document Analysis and Recognition -- ICDAR 2025},
   year      = {2026},
   publisher = {Springer Nature Switzerland},
   address   = {Cham},
   pages     = {485--505},
-  abstract  = {Education is the cornerstone of societal progress, yet automated document layout understanding in the education domain remains significantly under-explored, with most research focusing on individual components like texts, tables, images instead of a holistic understanding. Despite the increasing demand for AI-driven assessment, digitization, and retrieval of educational resources, very few dedicated works exists for question paper layout analysis, a critical component of automated learning systems. To bridge this gap, we introduce the first dataset HiLEx, explicitly designed for structure analysis and layout extraction from question paper images. The HiLEx dataset is curated from eight diverse examination formats. With over 1900 annotations with different structural layouts, covering both single-column and multi-column layouts, ensure robust generalization across different structural variations. We conduct a thorough empirical study with most contemporary object detection models, exposing their limitations in structural understanding, and format generalization. Our findings lay the groundwork for Smart AI solutions in education, fostering automated grading, question retrieval, and equitable learning access. This research aligns with UN Sustainable Development Goals (SDG 4: Quality Education, SDG 10: Reduced Inequalities) by enabling scalable, AI-driven assessment technologies, promoting inclusivity, and revolutionizing educational accessibility worldwide. The HiLEx dataset is publicly available in Github (https://github.com/HiLEx-DLA/HiLEx).},
   isbn      = {978-3-032-04627-7}
 }</code></pre>
     </div>
@@ -797,78 +890,88 @@
   <!-- Contact Section -->
   <section id="contact" class="reveal">
     <h2>Contact</h2>
-    <p>The HiLEx project is a collaborative effort by researchers working at the intersection of document analysis, computer vision, and educational AI. We welcome feedback and collaboration inquiries.</p>
-    <div class="contact-info">
-      <p><strong>Email:</strong> <a href="mailto:your.email@institution.edu">your.email@institution.edu</a></p>
-      <p><strong>GitHub Issues:</strong> <a href="https://github.com/HiLEx-DLA/HiLEx/issues" target="_blank" rel="noopener">HiLEx-DLA/HiLEx</a></p>
-      <p>Whether you are building educational AI tools, benchmarking layout models, or exploring document analysis in new domains – we’d love to hear from you!</p>
+    <p>The HiLEx project is a collaborative effort by researchers working at the intersection of document analysis,
+      computer vision, and educational AI. We welcome feedback, collaboration inquiries, and contributions.</p>
+    <h3>Authors</h3>
+    <table class="authors-table">
+      <tr>
+        <th>Name</th>
+        <th>Affiliation</th>
+        <th>Email</th>
+      </tr>
+      <tr>
+        <td>Utathya Aich</td>
+        <td>CNH Industrial ITC, India</td>
+        <td><a href="mailto:us4decaich@gmail.com">us4decaich@gmail.com</a></td>
+      </tr>
+      <tr>
+        <td>Shinjini Chakraborty</td>
+        <td>Institute of Engineering &amp; Management / University of Engineering and Management, India</td>
+        <td><a href="mailto:shinjinic05@gmail.com">shinjinic05@gmail.com</td>
+      </tr>
+      <tr>
+        <td>Deepan Sadhukhan</td>
+        <td>Institute of Engineering &amp; Management / University of Engineering and Management, India</td>
+        <td><a href="mailto:sadhukhandeepan@gmail.com">sadhukhandeepan@gmail.com</td>
+      </tr>
+      <tr>
+        <td>Swarnendu Ghosh</td>
+        <td>Institute of Engineering &amp; Management / University of Engineering and Management, India</td>
+        <td><a href="mailto:dr.swarnendu.ghosh@gmail.com">dr.swarnendu.ghosh@gmail.com</td>
+      </tr>
+      <tr>
+        <td>Tulika Saha <em>(Corresponding)</em></td>
+        <td>International Institute of Information Technology Bangalore, India</td>
+        <td><a href="mailto:sahatulika15@gmail.com">sahatulika15@gmail.com</a></td>
+      </tr>
+    </table>
+    <div class="contact-info" style="margin-top:1.5rem;">
+      <p><strong>General Inquiries:</strong> <a href="mailto:us4decaich@gmail.com">us4decaich@gmail.com</a></p>
+      <p><strong>GitHub Issues:</strong> <a href="https://github.com/HiLEx-DLA/HiLEx/issues" target="_blank"
+          rel="noopener">HiLEx-DLA/HiLEx</a></p>
     </div>
   </section>
 
-  <!-- Footer (optional) -->
   <footer style="text-align:center; padding: 2rem 1rem; font-size: 0.9rem; color: #777;">
-    © 2025 HiLEx Project – All Rights Reserved.
+    © 2026 HiLEx Project – Published at ICDAR 2025, Springer Nature Switzerland.
   </footer>
 
-  <!-- JavaScript for interactivity -->
   <script>
-    // Smooth scroll behavior is handled by CSS (scroll-behavior). Now handle nav color change on scroll:
     const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
-      if(window.pageYOffset > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
+      nav.classList.toggle('scrolled', window.pageYOffset > 50);
     });
-    // Mobile nav toggle:
-    const navToggle = document.getElementById('navToggle');
-    navToggle.addEventListener('click', () => {
-      // Toggle a class on nav to show/hide links
+    document.getElementById('navToggle').addEventListener('click', () => {
       nav.classList.toggle('open');
     });
-    // Scroll reveal for sections:
-    const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting) {
+        if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
-    revealElements.forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Copy citation functionality
     function copyCitation() {
-      const citationText = document.getElementById('citationText').textContent;
+      const text = document.getElementById('citationText').textContent;
       const tooltip = document.getElementById('copyTooltip');
-      
-      navigator.clipboard.writeText(citationText).then(() => {
-        // Show tooltip
+      navigator.clipboard.writeText(text).then(() => {
         tooltip.classList.add('show');
-        
-        // Hide tooltip after 2 seconds
-        setTimeout(() => {
-          tooltip.classList.remove('show');
-        }, 2000);
-      }).catch(err => {
-        console.error('Failed to copy citation: ', err);
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = citationText;
-        document.body.appendChild(textArea);
-        textArea.select();
+        setTimeout(() => tooltip.classList.remove('show'), 2000);
+      }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
         document.execCommand('copy');
-        document.body.removeChild(textArea);
-        
-        // Show tooltip
+        document.body.removeChild(ta);
         tooltip.classList.add('show');
-        setTimeout(() => {
-          tooltip.classList.remove('show');
-        }, 2000);
+        setTimeout(() => tooltip.classList.remove('show'), 2000);
       });
     }
   </script>
 </body>
+
 </html>
